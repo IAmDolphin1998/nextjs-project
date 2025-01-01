@@ -2,16 +2,7 @@ import React from "react";
 import { useSearchBox, UseSearchBoxProps, useStats } from "react-instantsearch";
 
 function ResultsFound() {
-  const {
-    hitsPerPage,
-    nbHits,
-    areHitsSorted,
-    nbSortedHits,
-    nbPages,
-    page,
-    processingTimeMS,
-    query,
-  } = useStats();
+  const { nbHits, query } = useStats();
 
   return (
     <>
@@ -75,7 +66,7 @@ function AuthorSearch({ setAuthor }: AuthorSearchProps) {
 }
 
 function ResultsSearch(props: UseSearchBoxProps) {
-  const { query, refine, clear } = useSearchBox(props);
+  const { query, refine } = useSearchBox(props);
   const [inputValue, setInputValue] = React.useState(query);
 
   return (

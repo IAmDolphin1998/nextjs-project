@@ -1,19 +1,7 @@
 import { useRefinementList, UseRefinementListProps } from "react-instantsearch";
 
 export default function FiltersBox(props: UseRefinementListProps) {
-  const {
-    items,
-    hasExhaustiveItems,
-    createURL,
-    refine,
-    sendEvent,
-    searchForItems,
-    isFromSearch,
-    canRefine,
-    canToggleShowMore,
-    isShowingMore,
-    toggleShowMore,
-  } = useRefinementList(props);
+  const { items, refine } = useRefinementList(props);
 
   return (
     <ul className="space-y-3">
