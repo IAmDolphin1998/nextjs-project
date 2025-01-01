@@ -1,7 +1,9 @@
 "use client";
 
+import FiltersBox from "./filters-box";
 import ListingCards from "./listing-cards";
-import { RefinementList, SearchBox } from "react-instantsearch";
+import StyledPagination from "./styled-pagination";
+import FullTextSearchBox from "./fulltext-search-box";
 import { InstantSearchNext } from "react-instantsearch-nextjs";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 
@@ -30,22 +32,29 @@ export default function SearchInterface() {
         preserveSharedStateOnUnmount: true,
       }}
     >
-      <div
-        className="grid w-full gap-5"
-        style={{
-          grid: "'left .' / 20% 80%",
-        }}
-      >
+      <div className="grid grid-cols-12 gap-5 w-full">
         {/* <!-- Left Side --> */}
-        <div className="flex flex-col gap-5" style={{ gridArea: "left" }}>
-          <RefinementList attribute="Area.Name" operator="and" />
-          <RefinementList attribute="Tags.Name" />
+        <div className="flex flex-col gap-5 col-span-3">
+          <div className="rounded-lg bg-gray-100 p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-semibold text-gray-800">
+              Filter by Category
+            </h2>
+            <FiltersBox attribute="Area.Name" operator="and" />
+          </div>
+
+          <div className="rounded-lg bg-gray-100 p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-semibold text-gray-800">
+              Filter by Tag
+            </h2>
+            <FiltersBox attribute="Tags.Name" />
+          </div>
         </div>
 
         {/* <!-- Right Side --> */}
-        <div className="flex flex-col gap-5">
-          <SearchBox />
+        <div className="grid gap-5 col-span-9">
+          <FullTextSearchBox />
           <ListingCards />
+          <StyledPagination />
         </div>
       </div>
     </InstantSearchNext>
