@@ -10,8 +10,8 @@ import { InstantSearchNext } from "react-instantsearch-nextjs";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 
 const searchClient = algoliasearch(
-  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
-  process.env.NEXT_PUBLIC_ALGOLIA_SEARCHAPI_KEY
+  "V1O1Y893BB",
+  "38e9cbad717ef476b439bd62484bb56d"
 );
 
 export default function SearchInterface() {
