@@ -1,7 +1,9 @@
 "use client";
 
+import React from "react";
 import FiltersBox from "./filters-box";
 import ListingCards from "./listing-cards";
+import { Configure } from "react-instantsearch";
 import StyledPagination from "./styled-pagination";
 import FullTextSearchBox from "./fulltext-search-box";
 import { InstantSearchNext } from "react-instantsearch-nextjs";
@@ -13,6 +15,8 @@ const searchClient = algoliasearch(
 );
 
 export default function SearchInterface() {
+  const [author, setAuthor] = React.useState("");
+
   return (
     <InstantSearchNext
       indexName={`${process.env.NODE_ENV}_document_index`}
@@ -21,7 +25,8 @@ export default function SearchInterface() {
         router: {
           cleanUrlOnDispose: false,
           windowTitle(routeState) {
-            const indexState = routeState.indexName || {};
+            const indexState =
+              routeState[`${process.env.NODE_ENV}_document_index`] || {};
             return indexState.query
               ? `UniPaper - Results for: ${indexState.query}`
               : "UniPaper - Results page";
@@ -29,9 +34,17 @@ export default function SearchInterface() {
         },
       }}
       future={{
-        preserveSharedStateOnUnmount: true,
+        preserveSharedStateOnUnmount: false,
       }}
     >
+      <Configure
+        filters={
+          author
+            ? `Authors.FirstName:"${author}" OR Authors.LastName:"${author}"`
+            : ""
+        }
+      />
+
       <div className="grid grid-cols-12 gap-5 w-full">
         {/* <!-- Left Side --> */}
         <div className="flex flex-col gap-5 col-span-3">
@@ -52,7 +65,7 @@ export default function SearchInterface() {
 
         {/* <!-- Right Side --> */}
         <div className="grid gap-5 col-span-9">
-          <FullTextSearchBox />
+          <FullTextSearchBox setAuthor={setAuthor} />
           <ListingCards />
           <StyledPagination />
         </div>
