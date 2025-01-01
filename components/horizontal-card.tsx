@@ -1,6 +1,7 @@
 import { Snippet } from "react-instantsearch";
 import { Document } from "@/types/document.types";
 import type { Hit as AlgoliaHit } from "instantsearch.js";
+import FallbackImage from "./fallback-image";
 
 export default function HorizontalCard({ hit }: { hit: AlgoliaHit<Document> }) {
   return (
@@ -10,7 +11,17 @@ export default function HorizontalCard({ hit }: { hit: AlgoliaHit<Document> }) {
         <span className="bg-blue-600 text-white text-sm font-medium px-3 py-1 rounded-full">
           {hit.Area.Name}
         </span>
-        <span className="text-gray-500 text-sm ml-4">30 November 2024</span>
+        {hit.Date ? (
+          <span className="text-gray-500 text-sm ml-4">
+            {new Date(hit.Date).toLocaleDateString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </span>
+        ) : (
+          <></>
+        )}
       </div>
 
       {/* <!-- Content Section --> */}
@@ -30,10 +41,21 @@ export default function HorizontalCard({ hit }: { hit: AlgoliaHit<Document> }) {
 
         {/* <!-- Preview Image Section --> */}
         <div className="flex-shrink-0">
-          <img
-            src="https://placehold.co/200x200"
-            alt="Preview of cold water swimming"
+          <FallbackImage
+            src={
+              hit.Thumbnail && hit.Thumbnail.url
+                ? hit.Thumbnail.url
+                : "/images/placeholder.jpg"
+            }
+            fallbackSrc="/images/placeholder.jpg"
+            alt={
+              hit.Thumbnail && hit.Thumbnail.alternativeText
+                ? hit.Thumbnail.alternativeText
+                : "No Alternative Text"
+            }
             className="rounded-lg w-48 h-auto object-cover"
+            width={200}
+            height={200}
           />
         </div>
       </div>
@@ -45,17 +67,24 @@ export default function HorizontalCard({ hit }: { hit: AlgoliaHit<Document> }) {
           {/* <!-- Overlapping Avatars --> */}
           <div className="flex -space-x-4 rtl:space-x-reverse">
             {hit.Authors.map((author, index) => (
-              <img
+              <FallbackImage
                 key={index}
-                src="https://placehold.co/40x40"
+                src={
+                  author.Avatar && author.Avatar.url
+                    ? author.Avatar.url
+                    : "/images/placeholder.jpg"
+                }
+                fallbackSrc="/images/placeholder.jpg"
                 alt={`${author.FirstName} ${author.LastName} profile picture`}
                 className="w-10 h-10 rounded-full border-2 border-white"
+                width={40}
+                height={40}
               />
             ))}
           </div>
 
           {/* <!-- Author Names --> */}
-          <div className="ml-4 text-sm">
+          <div className="ml-2 text-sm">
             {hit.Authors.map(
               (author) => author.FirstName + " " + author.LastName
             ).join(", ")}
