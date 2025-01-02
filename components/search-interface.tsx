@@ -41,7 +41,7 @@ export default function SearchInterface() {
 
       <div className="grid grid-cols-12 gap-5 w-full">
         {/* <!-- Left Side --> */}
-        <div className="flex flex-col gap-5 col-span-3">
+        <div className="flex flex-col gap-5 col-span-12 md:col-span-3">
           <div className="rounded-lg bg-gray-100 p-6 shadow-md">
             <h2 className="mb-4 text-xl font-semibold text-gray-800">
               Filter by Category
@@ -58,7 +58,7 @@ export default function SearchInterface() {
         </div>
 
         {/* <!-- Right Side --> */}
-        <div className="grid gap-5 col-span-9">
+        <div className="grid gap-5 col-span-12 md:col-span-9">
           <FullTextSearchBox setAuthor={setAuthor} />
           <ListingCards />
           <StyledPagination />

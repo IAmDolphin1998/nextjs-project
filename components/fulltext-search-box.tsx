@@ -46,20 +46,26 @@ function AuthorSearch({ setAuthor }: AuthorSearchProps) {
             }
           }}
         />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
+        <button
           className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"
+          onClick={(event) => {
+            setAuthor(searchTerm);
+          }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
+        </button>
       </div>
     </>
   );
@@ -87,20 +93,26 @@ function ResultsSearch(props: UseSearchBoxProps) {
             }
           }}
         />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
+        <button
           className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"
+          onClick={(event) => {
+            refine(inputValue);
+          }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
+        </button>
       </div>
     </>
   );
@@ -113,10 +125,10 @@ export default function FullTextSearchBox({
   return (
     <>
       {/* <!-- Main Container --> */}
-      <div className="flex items-center justify-between rounded-md bg-gray-100 p-4 shadow-md">
+      <div className="flex flex-col sm:flex-row items-center justify-between rounded-md bg-gray-100 p-4 shadow-md">
         <ResultsFound />
         {/* <!-- Search Boxes --> */}
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <AuthorSearch setAuthor={setAuthor} />
           <ResultsSearch />
         </div>

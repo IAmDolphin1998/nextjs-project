@@ -25,7 +25,7 @@ export default function HorizontalCard({ hit }: { hit: AlgoliaHit<Document> }) {
       </div>
 
       {/* <!-- Content Section --> */}
-      <div className="flex gap-6">
+      <div className="flex flex-col sm:flex-row gap-6">
         {/* <!-- Text Content Section --> */}
         <div className="flex-1">
           {/* <!-- Title Section --> */}
@@ -63,7 +63,7 @@ export default function HorizontalCard({ hit }: { hit: AlgoliaHit<Document> }) {
       {/* <!-- Footer Section --> */}
       <div className="mt-1 flex items-center justify-between">
         {/* <!-- Authors Section --> */}
-        <div className="flex items-center">
+        <div className="flex flex-col md:flex-row items-center">
           {/* <!-- Overlapping Avatars --> */}
           <div className="flex -space-x-4 rtl:space-x-reverse">
             {hit.Authors.map((author, index) => (
