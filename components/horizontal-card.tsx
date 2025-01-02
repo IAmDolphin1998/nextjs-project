@@ -12,7 +12,7 @@ export default function HorizontalCard({ hit }: { hit: AlgoliaHit<Document> }) {
           {hit.Area.Name}
         </span>
         {hit.Date ? (
-          <span className="text-gray-500 text-sm ml-4">
+          <span className="text-gray-500 text-sm ml-2">
             {new Date(hit.Date).toLocaleDateString("en-GB", {
               year: "numeric",
               month: "long",
@@ -75,7 +75,7 @@ export default function HorizontalCard({ hit }: { hit: AlgoliaHit<Document> }) {
                     : "/images/placeholder.jpg"
                 }
                 fallbackSrc="/images/placeholder.jpg"
-                alt={`${author.FirstName} ${author.LastName} profile picture`}
+                alt={`${author.Name} profile picture`}
                 className="w-10 h-10 rounded-full border-2 border-white"
                 width={40}
                 height={40}
@@ -85,9 +85,7 @@ export default function HorizontalCard({ hit }: { hit: AlgoliaHit<Document> }) {
 
           {/* <!-- Author Names --> */}
           <div className="ml-2 text-sm">
-            {hit.Authors.map(
-              (author) => author.FirstName + " " + author.LastName
-            ).join(", ")}
+            {hit.Authors.map((author) => author.Name).join(", ")}
           </div>
         </div>
 

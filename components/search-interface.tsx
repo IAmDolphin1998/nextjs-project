@@ -37,13 +37,7 @@ export default function SearchInterface() {
         preserveSharedStateOnUnmount: false,
       }}
     >
-      <Configure
-        filters={
-          author
-            ? `Authors.FirstName:"${author}" OR Authors.LastName:"${author}"`
-            : ""
-        }
-      />
+      <Configure filters={author ? `Authors.Name:"${author}"` : ""} />
 
       <div className="grid grid-cols-12 gap-5 w-full">
         {/* <!-- Left Side --> */}
