@@ -49,6 +49,7 @@ function AuthorSearch({ setAuthor }: AuthorSearchProps) {
         <button
           className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"
           onClick={(event) => {
+            console.log(event);
             setAuthor(searchTerm);
           }}
         >
@@ -96,6 +97,7 @@ function ResultsSearch(props: UseSearchBoxProps) {
         <button
           className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"
           onClick={(event) => {
+            console.log(event);
             refine(inputValue);
           }}
         >
